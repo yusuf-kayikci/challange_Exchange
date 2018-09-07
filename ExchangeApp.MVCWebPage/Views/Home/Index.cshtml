@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CurrencyItem>
+@{
+    ViewData["Title"] = "Index";
+}
+
+@using (Html.BeginForm("Calc", "Home", FormMethod.Post))
+{
+
+<div class="container">
+    <div class="row">
+        <div class="col-1">
+            <input id="Amount" name="amount" value="@ViewBag.amount" class="form-control" />
+        </div>
+        <div class="col-2">
+            <select id="fromCurrency" name="fromCurrency" selectedvalue="@ViewBag.Cur1" class="form-control">
+                @foreach (var item in Model)
+                {
+                    <option>@item.Name</option>
+                }
+
+
+            </select>
+        </div>
+        <div class="col-2">
+            <select id="toCurrency" name="toCurrency" value="@ViewBag.Cur2" class="form-control">
+                @foreach (var item in Model)
+                {
+                    <option>@item.Name</option>
+                }
+            </select>
+        </div>
+        <div class="col-2">
+            <input type="submit" class="form-control" value="Convert" />
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-4">
+            @ViewBag.amount @ViewBag.Cur1   
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            @ViewBag.resultText @ViewBag.Cur2
+        </div>
+    </div>
+
+</div>
+    
+}
+
